@@ -1,0 +1,43 @@
+{% extends 'users/userbase.html' %}
+{% load static %}
+{% block title %}
+    User App
+{% endblock %}
+{% block App %}
+    active
+{% endblock %}
+{% block content %}
+
+<!-- <body>
+<h1>This is rajesh</h1>
+</body> -->
+<body>
+    
+    <div class="container" style="margin-top: 20vh; border-radius: 24px; background: rgba(113, 149, 229, 0.4); height: 500px; padding: 10px;">
+        <h1>Sentiment Analyzer : </h1>
+        <br>
+        <form method="POST" class="form-group">
+            {% csrf_token %}
+            <!-- {{form.as_p}} -->
+            <p style="font-size:25px; font-family: sans-serif; ">Enter sentence to analyse</p>
+            {{form.Sentence}}
+            <br>
+            <button class="btn btn-warning form-control" type="submit">Submit</button>
+        </form>
+        <h1 style="font-family: sans-serif; font-size: 25px;">Result</h1>
+        {% if text == 'Positive' %}
+        <div class="positive" style="background-color: green; width: 100px; border-radius: 24px; padding: 12px; color: white; text-align: center;">
+            Positive
+        </div>
+        {% elif text == 'Neutral' %}
+        <div class="negative" style="background-color: rgb(255, 174, 0); width: 100px; border-radius: 24px; padding: 12px; color: white">
+            Neutral
+        </div>
+        {% elif text == 'Negative' %}
+        <div class="negative" style="background-color: red; width: 100px; border-radius: 24px; padding: 12px; color: white">
+            Negative
+        </div>
+        {% endif %}
+    </div>
+</body>
+{% endblock %}

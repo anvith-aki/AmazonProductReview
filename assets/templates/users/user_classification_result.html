@@ -1,0 +1,95 @@
+{% extends 'users/userbase.html' %}
+{% load static %}
+
+{% block title %}
+    User Home
+{% endblock %}
+{% block user_home %}
+    active
+{% endblock %}
+
+{% block content %}
+
+    <style>
+        .jumbotron {
+            height: 450px;
+        }
+    </style>
+
+    <div class="jumbotron">
+        <h1 class="text-center">User Classification Result</h1>
+
+        <center>
+          <table class="table">
+            <tr>
+                <th>S.NO</th>
+                <th>Algorithm</th>
+                <th>Accuracy</th>
+                <th>Precision</th>
+                <th>Recall</th>
+                <th>F1 score</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Logistic Regression</td>
+                <td>{{lg.lg_accuracy}}</td>
+                <td>{{lg.lg_precision}}</td>
+                <td>{{lg.lg_recall}}</td>
+                <td>{{lg.lg_f1_score}}</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Multinomial Naive Bayes</td>
+                <td>{{nb.nb_accuracy}}</td>
+                <td>{{nb.nb_precision}}</td>
+                <td>{{nb.nb_recall}}</td>
+                <td>{{nb.nb_f1_score}}</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Bernoulli Naive Bayes</td>
+                <td>{{bnb.bnb_accuracy}}</td>
+                <td>{{bnb.bnb_precision}}</td>
+                <td>{{bnb.bnb_recall}}</td>
+                <td>{{bnb.bnb_f1_score}}</td>
+            </tr>
+          <tr>
+            <td>4</td>
+            <td>Random Forest</td>
+            <td>{{rf.rf_accuracy}}</td>
+            <td>{{rf.rf_precision}}</td>
+            <td>{{rf.rf_recall}}</td>
+            <td>{{rf.rf_f1_score}}</td>
+        </tr>
+
+        </table>
+
+        <img align="right" src="{% static '/assets/img/confusionmatrix.png' %}" alt="" width="500px">
+
+        <div align="left">
+            <b>
+                <p>Accuracy = No. of correct Predictions / Total no. of predictions</p>
+                <p>Precision = True Positives / ( True Positives + False Positives )</p>
+                <p>Recall = True Positives / ( True Positives + False Negatives )</p>
+                <p>F1-Score = ( 2 x Precision x Recall ) / ( Precision + Recall ) <p>
+            </b>
+        </div>
+
+    </center>
+    {% if text == 'Positive' %}
+        <div class="positive" style="background-color: green; width: 100px; border-radius: 24px; padding: 12px; color: white; text-align: center;">
+            Positive
+        </div>
+        {% elif text == 'Neutral' %}
+        <div class="negative" style="background-color: rgb(255, 174, 0); width: 100px; border-radius: 24px; padding: 12px; color: white">
+            Neutral
+        </div>
+        {% elif text == 'Negative' %}
+        <div class="negative" style="background-color: red; width: 100px; border-radius: 24px; padding: 12px; color: white">
+            Negative
+        </div>
+        {% endif %}
+    <!-- <img src="{% static '/assets/img/wordcloud.png' %}" alt="" width="800px"> -->
+    </div>
+
+{% endblock %}
